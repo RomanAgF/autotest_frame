@@ -1,5 +1,5 @@
 from abc import ABC, abstractmethod
-
+from driver.waits import Wait
 
 class BaseElement(ABC):
 
@@ -8,7 +8,7 @@ class BaseElement(ABC):
         self.by_locator = by_locator
         self.driver = driver
         self.name = name
-
+        self.wait = Wait(driver)
     def click(self):
-        element = self.driver.find_element(*self.by_locator) # ищем элемент на странице по локатору
+        element = self.wait.waitelemenetspreview(*self.by_locator) # ищем элемент на странице по локатору
         element.click() # кликаем по нему

@@ -1,6 +1,6 @@
 from abc import ABC, abstractmethod
 from  selenium.common.exceptions import NoSuchElementException
-
+from driver.waits import Wait
 
 class BasePage(ABC):
     ''''Базовый класс страницы'''
@@ -11,13 +11,14 @@ class BasePage(ABC):
         self.unique_by_locator = unique_by_locator
         self.name = name
         self.url = url
+        self.wait = Wait(driver)
 
     def open(self):
         self.driver.get(self.url)
 
     def is_page_opened(self):
         try:
-            element = self.driver.find_element(*self.unique_by_locator)
+            element = self.wait.waitelemenetspreview(*self.unique_by_locator)
             return element.is_displayed() # реализовать, is_displayed вернет True или False
         except NoSuchElementException:
             return False
