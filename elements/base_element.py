@@ -10,5 +10,5 @@ class BaseElement(ABC):
         self.name = name
         self.wait = Wait(driver)
     def click(self):
-        element = self.wait.waitelemenetspreview(*self.by_locator) # ищем элемент на странице по локатору
+        element = self.wait.waitelemenetspreview(self.by_locator) # ищем элемент на странице по локатору
         element.click() # кликаем по нему
